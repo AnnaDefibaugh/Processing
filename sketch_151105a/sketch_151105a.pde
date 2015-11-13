@@ -1,11 +1,16 @@
+import ddf.minim.*;
 int score = 0;
 PImage photo;
 int Ypos = 200;
 int Xpos = (int)random(1920);
 int rainX;
+Minim minim;
+AudioSample sound;
 
 void setup() {
 size(1920, 1000);
+minim = new Minim (this);
+sound = minim.loadSample("BD.wav", 128);
 photo = loadImage("bucket-308702_640.png");
 }
 
@@ -32,6 +37,7 @@ rainX = mouseX;
   noStroke();
   fill(144, 196, 255);
   ellipse(Xpos, Ypos, 20, 50); //Rain Drawing
+  sound.trigger();
   image(photo, rainX, 915); //Bucket
   fill(255, 128, 190);
 textSize(16);
